@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- A sample job config that explicitly configures job running the way it is configured by default (if there is no explicit config). -->
+<job_conf>
+  <plugins>
+    <plugin id="local" type="runner" load="galaxy.jobs.runners.local:LocalJobRunner" />
+  </plugins>
+  <destinations>
+    <destination id="local" runner="local" />
+    <destination id="docker_local" runner="local">
+      <param id="docker_enabled">true</param>
+      <param id="docker_sudo">false</param>
+      <param id="docker_auto_rm">true</param>
+      <param id="docker_set_user">root</param>
+    </destination>
+  </destinations>
+  <tools>
+    <tool id="retropath2" destination="docker_local" />
+  </tools>
+</job_conf>
